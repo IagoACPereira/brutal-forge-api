@@ -4,4 +4,3 @@
 A Pagina de metal brasileira mais pesada da internet.
 
 Tem como objetivo fortalecer a cena Underground do metal nacional.
-
