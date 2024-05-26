@@ -1,12 +1,12 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize({
-  host: 'viaduct.proxy.rlwy.net',
-  port: 44279,
-  database: 'railway',
-  username: 'postgres',
-  password: 'QxXeotWkbtfdTsIGJkEzXbdOKOXbGrch',
-  dialect: 'postgres',
+  host: process.env.HOSTDB,
+  port: process.env.PORTADB,
+  database: process.env.DATABASE,
+  username: process.env.USERDB,
+  password: process.env.PASSDB,
+  dialect: process.env.DIALECT,
 });
 
 try {
