@@ -3,7 +3,7 @@ const sequelize = require('../config/conexaoDb');
 const Genero = require('./Genero');
 const Pais = require('./Pais');
 
-const Artista = sequelize.define('artistas', {
+const Artista = sequelize.define('artista', {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -36,10 +36,12 @@ Artista.belongsTo(Genero, {
   foreignKey: 'generoId'
 });
 Pais.hasMany(Artista, {
-  foreignKey: 'paisId'
+  foreignKey: 'paisId',
+  as: 'paisArtista'
 });
 Artista.belongsTo(Pais, {
-  foreignKey: 'paisId'
+  foreignKey: 'paisId',
+  as: 'paisArtista'
 });
 
 // Artista.sync({ force: true });

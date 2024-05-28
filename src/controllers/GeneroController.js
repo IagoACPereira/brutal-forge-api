@@ -7,7 +7,8 @@ class GeneroController {
       const genero = await Genero.create({ nome });
 
       res.status(201).json({
-        mensagem: 'em testes',
+        mensagem: 'Genero adicionado com sucesso',
+        dados: genero,
         status: 201,
       });
     } catch (error) {

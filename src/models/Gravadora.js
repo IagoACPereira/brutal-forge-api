@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/conexaoDb');
 const Pais = require('./Pais');
 
-const Gravadora = sequelize.define('gravadoras', {
+const Gravadora = sequelize.define('gravadora', {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -17,10 +17,12 @@ const Gravadora = sequelize.define('gravadoras', {
 });
 
 Pais.hasMany(Gravadora, {
-  foreignKey: 'paisId'
+  foreignKey: 'paisId',
+  as: 'paisGravadora',
 })
 Gravadora.belongsTo(Pais, {
-  foreignKey: 'paisId'
+  foreignKey: 'paisId',
+  as: 'paisGravadora',
 })
 
 // Gravadora.sync({ force: true });

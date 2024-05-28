@@ -1,3 +1,4 @@
+const Album = require("../models/Album");
 const Faixa = require("../models/Faixa");
 
 class FaixaController {
@@ -31,7 +32,13 @@ class FaixaController {
 
   static async exibirTodos(req, res) {
     try {
-      const faixas = Faixa.findAndCountAll();
+      const faixas = await Faixa.findAndCountAll({
+        attributes: ['id', 'titulo', 'duracao', 'numFaixa'],
+        include: {
+          model: Album,
+          attributes: ['id', 'titulo']
+        }
+      });
 
       res.status(200).json({
         qtd: faixas.count,
@@ -51,6 +58,11 @@ class FaixaController {
     try {
       const faixa = await Faixa.findOne({
         where: { id },
+        attributes: ['id', 'titulo', 'duracao', 'numFaixa'],
+        include: {
+          model: Album,
+          attributes: ['id', 'titulo']
+        }
       });
 
       res.status(200).json({

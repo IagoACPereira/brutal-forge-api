@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/conexaoDb');
 
-const Genero = sequelize.define('generos', {
+const Genero = sequelize.define('genero', {
   nome: {
     type: DataTypes.STRING,
     allowNull: false,

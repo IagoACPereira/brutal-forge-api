@@ -2,19 +2,22 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/conexaoDb');
 const Album = require('./Album');
 
-const Faixa = sequelize.define('faixas', {
+const Faixa = sequelize.define('faixa', {
   titulo: {
     type: DataTypes.STRING,
     allowNull: false,
   },
   duracao: { // minutos
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
   numFaixa: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
+}, {
+  timestamps: false,
+  freezeTableName: true,
 });
 
 Album.hasMany(Faixa, {

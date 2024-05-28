@@ -11,3 +11,10 @@ Tem como objetivo fortalecer a cena Underground do metal nacional.
 - Artistas
 - Albuns
 - Faixas
+
+{
+  "titulo": "titulo"
+  "duracao": 200
+  "numFaixa": 1
+  "albumId": 1
+}

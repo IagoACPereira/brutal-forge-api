@@ -78,7 +78,7 @@ class PaisController {
         where: { id },
       });
       res.status(200).json({
-        mensagem: 'em testes',
+        mensagem: 'Pais deletado com sucesso',
         status: 200,
       });
     } catch (error) {

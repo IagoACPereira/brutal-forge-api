@@ -1,4 +1,5 @@
 const Gravadora = require("../models/Gravadora");
+const Pais = require("../models/Pais");
 
 class GravadoraController {
   static async adicionar(req, res) {
@@ -29,7 +30,13 @@ class GravadoraController {
 
   static async exibirTodos(req, res) {
     try {
-      const gravadoras = await Gravadora.findAndCountAll();
+      const gravadoras = await Gravadora.findAndCountAll({
+        attributes: ['id', 'nome', 'imagem'],
+        include: {
+          model: Pais,
+          as: 'paisGravadora',
+        },
+      });
 
       res.status(200).json({
         qtd: gravadoras.count,
@@ -49,6 +56,11 @@ class GravadoraController {
     try {
       const gravadora = await Gravadora.findOne({
         where: { id },
+        attributes: ['id', 'nome', 'imagem'],
+        include: {
+          model: Pais,
+          as: 'paisGravadora',
+        },
       });
       res.status(200).json({
         dados: gravadora,
@@ -98,7 +110,7 @@ class GravadoraController {
       });
       
       res.status(200).json({
-        mensagem: 'em testes',
+        mensagem: 'Gravadora deletada com sucesso',
         status: 200,
       });
     } catch (error) {

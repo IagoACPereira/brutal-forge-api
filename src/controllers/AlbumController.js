@@ -1,4 +1,7 @@
 const Album = require("../models/Album");
+const Artista = require("../models/Artista");
+const Faixa = require("../models/Faixa");
+const Gravadora = require("../models/Gravadora");
 
 class AlbumController {
   static async adicionar(req, res) {
@@ -33,7 +36,20 @@ class AlbumController {
 
   static async exibirTodos(req, res) {
     try {
-      const albuns = await Album.findAndCountAll();
+      const albuns = await Album.findAndCountAll({
+        attributes: ['id', 'titulo', 'dataLancamento', 'imagem'],
+        include: [
+          {
+            model: Artista,
+            as: 'artista',
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem']
+          },
+          {
+            model: Gravadora,
+            attributes: ['id', 'nome', 'imagem']
+          }
+        ]
+      });
 
       res.status(200).json({
         qtd: albuns.count,
@@ -53,6 +69,22 @@ class AlbumController {
     try {
       const album = await Album.findOne({
         where: { id },
+        attributes: ['id', 'titulo', 'dataLancamento', 'imagem'],
+        include: [
+          {
+            model: Artista,
+            as: 'artista',
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem']
+          },
+          {
+            model: Gravadora,
+            attributes: ['id', 'nome', 'imagem']
+          },
+          {
+            model: Faixa,
+            attributes: ['id', 'titulo', 'duracao', 'numFaixa']
+          }
+        ]
       });
 
       res.status(200).json({

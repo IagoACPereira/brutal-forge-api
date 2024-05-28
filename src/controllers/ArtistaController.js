@@ -1,4 +1,6 @@
 const Artista = require("../models/Artista");
+const Genero = require("../models/Genero");
+const Pais = require("../models/Pais");
 
 class ArtistaController {
   static async adicionar(req, res) {
@@ -12,7 +14,7 @@ class ArtistaController {
       paisId,
     } = req.body;
     try {
-      const artista = Artista.create({
+      const artista = await Artista.create({
         nome,
         dataFormacao,
         ativo,
@@ -37,7 +39,18 @@ class ArtistaController {
 
   static async exibirTodos(req, res) {
     try {
-      const artistas = await Artista.findAndCountAll();
+      const artistas = await Artista.findAndCountAll({
+        attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
+        include: [
+          {
+            model: Genero,
+          },
+          {
+            model: Pais,
+            as: 'paisArtista',
+          }
+        ],
+      });
 
       res.status(200).json({
         qtd: artistas.count,
@@ -57,6 +70,16 @@ class ArtistaController {
     try {
       const artista = await Artista.findOne({
         where: { id },
+        attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
+        include: [
+          {
+            model: Genero,
+          },
+          {
+            model: Pais,
+            as: 'paisArtista',
+          }
+        ],
       });
 
       res.status(200).json({

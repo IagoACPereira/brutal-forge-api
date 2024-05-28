@@ -3,7 +3,7 @@ const sequelize = require('../config/conexaoDb');
 const Artista = require('./Artista');
 const Gravadora = require('./Gravadora');
 
-const Album = sequelize.define('albuns', {
+const Album = sequelize.define('album', {
   titulo: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -22,10 +22,12 @@ const Album = sequelize.define('albuns', {
 });
 
 Artista.hasMany(Album, {
-  foreignKey: 'artistaId'
+  foreignKey: 'artistaId',
+  as: 'artista',
 });
 Album.belongsTo(Artista, {
-  foreignKey: 'artistaId'
+  foreignKey: 'artistaId',
+  as: 'artista',
 });
 Gravadora.hasMany(Album, {
   foreignKey: 'gravadoraId'
