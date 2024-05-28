@@ -8,13 +8,17 @@ const Faixa = sequelize.define('faixa', {
     allowNull: false,
   },
   duracao: { // minutos
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   numFaixa: {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  letra: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  }
 }, {
   timestamps: false,
   freezeTableName: true,
