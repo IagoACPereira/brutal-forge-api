@@ -17,7 +17,7 @@ app
   )
   .set('view engine', 'ejs')
   .set('views', `${__dirname}/views`)
-  .get('/', (req, res) => res.status(200).json('Brutal Forge'))
+  .get('/', (req, res) => res.status(200).render('index.ejs'))
   .use(
     paisRouter,
     generoRouter,
