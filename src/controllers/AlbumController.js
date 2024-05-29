@@ -69,7 +69,7 @@ class AlbumController {
     try {
       const album = await Album.findOne({
         where: { id },
-        attributes: ['id', 'titulo', 'dataLancamento', 'imagem'],
+        attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'gostei', 'naoGostei'],
         include: [
           {
             model: Artista,
@@ -142,6 +142,56 @@ class AlbumController {
         mensagem: 'Album deletado com sucesso',
         status: 200,
       });
+    } catch (error) {
+      res.status(400).json({
+        mensagem: error.message,
+        status: 400,
+      });
+    }
+  }
+
+  static async gostar(req, res) {
+    const { id } = req.params;
+    try {
+      const album = await Album.findOne({
+        where: { id },
+      });
+
+      await Album.update({
+        gostei: album.gostei + 1,
+      }, {
+        where: { id },
+      });
+
+      res.status(200).json({
+        mensagem: `Você gostou do album ${album.titulo}`,
+        status: 200,
+      })
+    } catch (error) {
+      res.status(400).json({
+        mensagem: error.message,
+        status: 400,
+      });
+    }
+  }
+
+  static async desgostar(req, res) {
+    const { id } = req.params;
+    try {
+      const album = await Album.findOne({
+        where: { id },
+      });
+
+      await Album.update({
+        naoGostei: album.naoGostei + 1,
+      }, {
+        where: { id },
+      });
+
+      res.status(200).json({
+        mensagem: `Você não gostou do album ${album.titulo}`,
+        status: 200,
+      })
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,

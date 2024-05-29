@@ -16,6 +16,16 @@ const Album = sequelize.define('album', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  gostei: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  },
+  naoGostei: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    defaultValue: 0,
+  }
 }, {
   timestamps: false,
   freezeTableName: true,
