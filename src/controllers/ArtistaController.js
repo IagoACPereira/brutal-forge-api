@@ -1,3 +1,4 @@
+const Album = require("../models/Album");
 const Artista = require("../models/Artista");
 const Genero = require("../models/Genero");
 const Pais = require("../models/Pais");
@@ -72,6 +73,10 @@ class ArtistaController {
         where: { id },
         attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
         include: [
+          {
+            model: Album,
+            as: 'albuns'
+          },
           {
             model: Genero,
           },

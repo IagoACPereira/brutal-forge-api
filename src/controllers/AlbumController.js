@@ -37,7 +37,7 @@ class AlbumController {
   static async exibirTodos(req, res) {
     try {
       const albuns = await Album.findAndCountAll({
-        attributes: ['id', 'titulo', 'dataLancamento', 'imagem'],
+        attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'curtidas', 'descurtidas'],
         include: [
           {
             model: Artista,
@@ -51,7 +51,7 @@ class AlbumController {
         ]
       });
 
-      res.status(200).json({
+      res.status(200).render('albuns/index.ejs', {
         qtd: albuns.count,
         dados: albuns.rows,
         status: 200,
@@ -69,7 +69,7 @@ class AlbumController {
     try {
       const album = await Album.findOne({
         where: { id },
-        attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'gostei', 'naoGostei'],
+        attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'curtidas', 'descurtidas'],
         include: [
           {
             model: Artista,
@@ -82,12 +82,12 @@ class AlbumController {
           },
           {
             model: Faixa,
-            attributes: ['id', 'titulo', 'duracao', 'numFaixa']
+            attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra']
           }
         ]
       });
 
-      res.status(200).json({
+      res.status(200).render('albuns/album.ejs', {
         dados: album,
         status: 200,
       });
@@ -158,7 +158,7 @@ class AlbumController {
       });
 
       await Album.update({
-        gostei: album.gostei + 1,
+        curtidas: album.curtidas + 1,
       }, {
         where: { id },
       });
@@ -183,7 +183,7 @@ class AlbumController {
       });
 
       await Album.update({
-        naoGostei: album.naoGostei + 1,
+        descurtidas: album.descurtidas + 1,
       }, {
         where: { id },
       });
