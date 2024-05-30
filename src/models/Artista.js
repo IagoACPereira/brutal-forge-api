@@ -37,7 +37,6 @@ Artista.belongsTo(Genero, {
 });
 Pais.hasMany(Artista, {
   foreignKey: 'paisId',
-  as: 'paisArtista'
 });
 Artista.belongsTo(Pais, {
   foreignKey: 'paisId',

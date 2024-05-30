@@ -16,12 +16,12 @@ const Album = sequelize.define('album', {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  gostei: {
+  curtidas: {
     type: DataTypes.INTEGER,
     allowNull: true,
     defaultValue: 0,
   },
-  naoGostei: {
+  descurtidas: {
     type: DataTypes.INTEGER,
     allowNull: true,
     defaultValue: 0,
@@ -33,7 +33,7 @@ const Album = sequelize.define('album', {
 
 Artista.hasMany(Album, {
   foreignKey: 'artistaId',
-  as: 'artista',
+  as: 'albuns',
 });
 Album.belongsTo(Artista, {
   foreignKey: 'artistaId',
