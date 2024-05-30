@@ -16,7 +16,7 @@ Tem como objetivo fortalecer a cena Underground do metal nacional.
 |6|Faixas|
 
 
-# Passos a segir
+# Passos a seguir
 - [x] **Planejamento**: Antes de começar a codificar, é importante planejar sua API. Defina claramente o propósito da API e identifique os principais recursos que ela deve ter.
 - [x] **Design da API**: Decida sobre a arquitetura da API (REST, GraphQL, etc.). Desenhe os endpoints da API e decida sobre os métodos HTTP a serem usados (GET, POST, PUT, DELETE, etc.). 
 - [x] **Desenvolvimento**: Comece a codificar a API usando a linguagem de programação e o framework de sua escolha. Certifique-se de seguir as melhores práticas de codificação.
