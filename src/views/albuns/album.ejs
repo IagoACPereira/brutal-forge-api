@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <h1><a href="/">Brutal Forge</a></h1>
+    <h1>Brutal Forge</h1>
 
     <ul>
       <li><a href="/albuns">Albuns</a></li>
@@ -20,8 +20,10 @@
   </header>
 
   <main>
-    <img src="<%= dados.imagem %>" alt="">
+    <img width="500" src="<%= dados.imagem %>" alt="">
     <h1><%= dados.titulo %></h1>
+    <button type="button">Atualizar</button>
+    <button type="button">Deletar</button>
     <p><a href="/artistas/<%= dados.artista.id %>"><%= dados.artista.nome %></a></p>
     <p>Lançamento: <%= dados.dataLancamento.split('-').reverse().join('/') %></p>
     <p>Gravadora: <a href="/gravadoras/<%= dados.gravadora.id %>"><%= dados.gravadora.nome %></a></p>

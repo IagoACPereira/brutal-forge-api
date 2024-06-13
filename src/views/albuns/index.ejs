@@ -9,7 +9,7 @@
 </head>
 <body>
   <header>
-    <h1><a href="/">Brutal Forge</a></h1>
+    <h1>Brutal Forge</h1>
 
     <ul>
       <li><a href="/albuns">Albuns</a></li>
@@ -32,6 +32,7 @@
         <th>Gravadora</th>
         <th><i class="bi bi-hand-thumbs-up"></i></th>
         <th><i class="bi bi-hand-thumbs-down"></i></th>
+        <th></th>
       </tr>
       <% dados.reverse().map(item => { %>
         <tr>
@@ -42,6 +43,11 @@
           <td><a href="/gravadoras/<%= item.gravadora.id %>"><%= item.gravadora.nome %></a></td>
           <td><%= item.curtidas %></td>
           <td><%= item.descurtidas %></td>
+          <td>
+            <button type="button">Atualizar</button>
+            <button type="button">Deletar</button>
+          </td>
+
         </tr>
       <% }) %>
     </table>
