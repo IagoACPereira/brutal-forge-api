@@ -37,7 +37,7 @@
           <td><a href="/artistas/<%= item.id %>"><%= item.nome %></a></td>
           <td><%= item.dataFormacao.split('-')[0] %></td>
           <td><%= item.ativo ? 'Sim' : 'Não' %></td>
-          <td><%= item.genero.nome %></td>
+          <td><a href="/generos/<%= item.genero.id %>"><%= item.genero.nome %></a></td>
           <td><%= item.paisArtista.nome %></td>
           <td>
             <button type="button">Atualizar</button>

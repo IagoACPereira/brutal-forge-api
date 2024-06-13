@@ -28,8 +28,8 @@
         <th>Pais</th>
       </tr>
       <% dados.map((item) => { %>
-        <td><img src="<%= item.imagem %>" height="80" alt=""></td>
-        <td><%= item.nome %></td>
+        <td><a href="/gravadoras/<%= item.id %>"><img src="<%= item.imagem %>" height="80" alt=""></a></td>
+        <td><a href="/gravadoras/<%= item.id %>"><%= item.nome %></a></td>
         <td><%= item.paisGravadora.nome %></td>
       <% }) %>
     </table>
