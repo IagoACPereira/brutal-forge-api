@@ -38,7 +38,7 @@ class GravadoraController {
         },
       });
 
-      res.status(200).json({
+      res.status(200).render('gravadoras/index.ejs', {
         qtd: gravadoras.count,
         dados: gravadoras.rows,
         status: 200,
