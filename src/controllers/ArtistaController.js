@@ -53,7 +53,13 @@ class ArtistaController {
         ],
       });
 
-      res.status(200).json({
+      // res.status(200).json({
+      //   qtd: artistas.count,
+      //   dados: artistas.rows,
+      //   status: 200,
+      // })
+
+      res.status(200).render('artistas/index.ejs', {
         qtd: artistas.count,
         dados: artistas.rows,
         status: 200,
@@ -75,6 +81,7 @@ class ArtistaController {
         include: [
           {
             model: Album,
+            attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'curtidas', 'descurtidas'],
             as: 'albuns'
           },
           {
