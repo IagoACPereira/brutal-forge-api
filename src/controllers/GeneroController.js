@@ -23,7 +23,7 @@ class GeneroController {
     try {
       const generos = await Genero.findAndCountAll();
 
-      res.status(200).json({
+      res.status(200).render('generos/index.ejs', {
         qtd: generos.count,
         dados: generos.rows,
         status: 200,
