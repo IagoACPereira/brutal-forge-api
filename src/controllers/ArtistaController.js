@@ -1,6 +1,7 @@
 const Album = require("../models/Album");
 const Artista = require("../models/Artista");
 const Genero = require("../models/Genero");
+const Gravadora = require("../models/Gravadora");
 const Pais = require("../models/Pais");
 
 class ArtistaController {
@@ -82,7 +83,11 @@ class ArtistaController {
           {
             model: Album,
             attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'curtidas', 'descurtidas'],
-            as: 'albuns'
+            as: 'albuns',
+            include: {
+              model: Gravadora,
+              attributes: ['id', 'nome', 'imagem']
+            }, 
           },
           {
             model: Genero,
@@ -94,7 +99,7 @@ class ArtistaController {
         ],
       });
 
-      res.status(200).json({
+      res.status(200).render('artistas/artista.ejs', {
         dados: artista,
         status: 200,
       });
