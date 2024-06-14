@@ -4,6 +4,9 @@
 A Pagina de metal brasileira mais pesada da internet.
 
 Tem como objetivo fortalecer a cena Underground do metal nacional.
+# Tasks
+- [] Criar formularios em ordem de cadastro
+- [] Criar logica para gravar array de faixas atribuindo o id do album nelas. 
 # Ordem de cadastro
 
 |#|Model|
