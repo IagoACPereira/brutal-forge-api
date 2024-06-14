@@ -1,4 +1,7 @@
+const Album = require("../models/Album");
+const Artista = require("../models/Artista");
 const Genero = require("../models/Genero");
+const Pais = require("../models/Pais");
 
 class GeneroController {
   static async adicionar(req, res) {
@@ -41,12 +44,30 @@ class GeneroController {
     try {
       const genero = await Genero.findOne({
         where: { id },
+        include: [
+          {
+            model: Artista,
+            include: [
+              {
+                model: Genero,
+              },
+              {
+                model: Pais,
+                as: 'paisArtista'
+              }
+            ],
+          },
+        ]
       });
 
-      res.status(200).json({
+      res.status(200).render('generos/genero.ejs', {
         dados: genero,
         status: 200,
       });
+      // res.status(200).json({
+      //   dados: genero,
+      //   status: 200,
+      // });
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,

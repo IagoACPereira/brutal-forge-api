@@ -1,3 +1,5 @@
+const Album = require("../models/Album");
+const Artista = require("../models/Artista");
 const Gravadora = require("../models/Gravadora");
 const Pais = require("../models/Pais");
 
@@ -57,15 +59,31 @@ class GravadoraController {
       const gravadora = await Gravadora.findOne({
         where: { id },
         attributes: ['id', 'nome', 'imagem'],
-        include: {
-          model: Pais,
-          as: 'paisGravadora',
-        },
+        include: [
+          {
+            model: Pais,
+            as: 'paisGravadora',
+          },
+          {
+            model: Album,
+            attributes: ['id', 'titulo', 'dataLancamento', 'imagem', 'curtidas', 'descurtidas'],
+            include: {
+              model: Artista,
+              as: 'artista',
+              attributes: ['id', 'nome']
+            },
+          }
+        ],
       });
-      res.status(200).json({
+      res.status(200).render('gravadoras/gravadora.ejs', {
         dados: gravadora,
         status: 200,
       });
+      // teste
+      // res.status(200).json({
+      //   dados: gravadora,
+      //   status: 200,
+      // });
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,
