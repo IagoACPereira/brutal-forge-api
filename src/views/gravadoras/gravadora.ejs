@@ -21,37 +21,30 @@
 
   <main>
     <img src="<%= dados.imagem %>" alt="">
-    
+
     <h1><%= dados.nome %></h1>
 
     <button type="button">Alterar</button>
     <button type="button">Deletar</button>
 
-    <p>Formação: <%= dados.dataFormacao.split('-')[0] %></p>
-    <p>Ativo: <%= dados.ativo ? 'Sim' : 'Não' %></p>
-    <% if (dados.descricao) { %>
-      <p><%= dados.descricao %></p>
-    <% } %>
-    <p>Gênero: <%= dados.genero.nome %></p>
-    <p>País: <%= dados.paisArtista.nome %></p>
-    
-    <h4>Albuns</h4>
+    <p>País: <%= dados.paisGravadora.nome %></p>
+    <h4>Albuns  </h4>
     <table>
       <tr>
         <th>#</th>
         <th>Titulo</th>
         <th>Lancamento</th>
-        <th>Gravadora</th>
+        <th>Artista</th>
         <th><i class="bi bi-hand-thumbs-up"></i></th>
         <th><i class="bi bi-hand-thumbs-down"></i></th>
         <th></th>
       </tr>
-      <% dados.albuns.map(item => { %>
+      <% dados.albums.map(item => { %>
         <tr>
           <td><a href="/albuns/<%= item.id %>"><img height="100" src="<%= item.imagem %>" alt=""></a></td>
           <td><a href="/albuns/<%= item.id %>"><%= item.titulo %></a></td>
           <td><%= item.dataLancamento.split('-')[0] %></td>
-          <td><a href="/gravadoras/<%= item.gravadora.id %>"><%= item.gravadora.nome %></a></td>
+          <td><a href="/artistas/<%= item.artista.id %>"><%= item.artista.nome %></a></td>
           <td><%= item.curtidas %></td>
           <td><%= item.descurtidas %></td>
           <td>
@@ -63,7 +56,5 @@
       <% }) %>
     </table>
   </main>
-
-  <footer></footer>
 </body>
 </html>
