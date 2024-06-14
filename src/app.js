@@ -16,6 +16,7 @@ app
       extended: true,
     }),
   )
+  .use('/public', express.static(`${__dirname}/public`))
   .set('view engine', 'ejs')
   .set('views', `${__dirname}/views`)
   .get('/', async (req, res) => {

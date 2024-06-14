@@ -1,0 +1,16 @@
+header{
+  border: 1px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2vh 2vw;
+}
+
+header ul{
+  display: flex;
+  justify-content: space-between;
+}
+
+header ul li{
+  margin-left: 2vw;
+}
