@@ -1,5 +1,5 @@
 require('dotenv').config()
-const app = require("./src/app");
+const app = require("./api/app");
 
 const porta = process.env.PORTA;
 
