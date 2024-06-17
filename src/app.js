@@ -21,7 +21,10 @@ app
   .set('views', `${__dirname}/views`)
   .get('/', async (req, res) => {
     try {
-      res.status(200).render('index.ejs')
+      res.status(200).json({
+        mensagem: 'Brutal Forge',
+        status: 200,
+      })
     } catch (error) {
       res.status(400).json({
         mensagem: error.messege,

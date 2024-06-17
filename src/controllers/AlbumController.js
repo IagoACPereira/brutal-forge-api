@@ -51,7 +51,7 @@ class AlbumController {
         ]
       });
 
-      res.status(200).render('albuns/index.ejs', {
+      res.status(200).json({
         qtd: albuns.count,
         dados: albuns.rows,
         status: 200,
@@ -87,7 +87,7 @@ class AlbumController {
         ]
       });
 
-      res.status(200).render('albuns/album.ejs', {
+      res.status(200).json({
         dados: album,
         status: 200,
       });

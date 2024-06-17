@@ -54,13 +54,7 @@ class ArtistaController {
         ],
       });
 
-      // res.status(200).json({
-      //   qtd: artistas.count,
-      //   dados: artistas.rows,
-      //   status: 200,
-      // })
-
-      res.status(200).render('artistas/index.ejs', {
+      res.status(200).json({
         qtd: artistas.count,
         dados: artistas.rows,
         status: 200,
@@ -99,7 +93,7 @@ class ArtistaController {
         ],
       });
 
-      res.status(200).render('artistas/artista.ejs', {
+      res.status(200).json({
         dados: artista,
         status: 200,
       });

@@ -40,7 +40,7 @@ class GravadoraController {
         },
       });
 
-      res.status(200).render('gravadoras/index.ejs', {
+      res.status(200).json({
         qtd: gravadoras.count,
         dados: gravadoras.rows,
         status: 200,
@@ -75,15 +75,10 @@ class GravadoraController {
           }
         ],
       });
-      res.status(200).render('gravadoras/gravadora.ejs', {
+      res.status(200).json({
         dados: gravadora,
         status: 200,
       });
-      // teste
-      // res.status(200).json({
-      //   dados: gravadora,
-      //   status: 200,
-      // });
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,
