@@ -1,3 +1,5 @@
+const Artista = require("../models/Artista");
+const Gravadora = require("../models/Gravadora");
 const Pais = require("../models/Pais");
 
 class PaisController {
@@ -38,7 +40,18 @@ class PaisController {
     const { id } = req.params;
     try {
       const pais = await Pais.findOne({
-        where: { id },
+      where: { id },
+        include: [
+          {
+            model: Artista,
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
+          },
+          {
+            model: Gravadora,
+            as: 'paisGravadora',
+            attributes: ['id', 'nome', 'imagem']
+          }
+        ],
       });
       res.status(200).json({
         dados: pais,

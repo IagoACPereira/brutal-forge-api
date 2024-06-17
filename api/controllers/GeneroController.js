@@ -47,6 +47,7 @@ class GeneroController {
         include: [
           {
             model: Artista,
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
             include: [
               {
                 model: Genero,
