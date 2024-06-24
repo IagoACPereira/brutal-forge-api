@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const paisRouter = require('./routes/PaisRoutes');
 const generoRouter = require('./routes/GeneroRoutes');
 const gravadoraRouter = require('./routes/GravadoraRoutes');
@@ -19,10 +20,10 @@ app
   .use('/public', express.static(`${__dirname}/public`))
   .set('view engine', 'ejs')
   .set('views', `${__dirname}/views`)
-  .get('/', async (req, res) => {
+  .get('/', cors(), async (req, res) => {
     try {
       res.status(200).json({
-        mensagem: 'Brutal Forge',
+        mensagem: 'Brutal Forge API',
         status: 200,
       })
     } catch (error) {
@@ -33,6 +34,7 @@ app
     }
   })
   .use(
+    cors(),
     paisRouter,
     generoRouter,
     gravadoraRouter,

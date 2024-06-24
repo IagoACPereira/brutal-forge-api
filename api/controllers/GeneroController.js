@@ -24,7 +24,11 @@ class GeneroController {
 
   static async exibirTodos(req, res) {
     try {
-      const generos = await Genero.findAndCountAll();
+      const generos = await Genero.findAndCountAll({
+        order: [
+          ['id', 'ASC'],
+        ],
+      });
 
       res.status(200).json({
         qtd: generos.count,
@@ -58,7 +62,10 @@ class GeneroController {
               }
             ],
           },
-        ]
+        ],
+        order: [
+          [Artista, 'id', 'ASC'],
+        ],
       });
 
       res.status(200).json({

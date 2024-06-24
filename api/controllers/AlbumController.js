@@ -47,7 +47,10 @@ class AlbumController {
           {
             model: Gravadora,
             attributes: ['id', 'nome', 'imagem']
-          }
+          },
+        ],
+        order: [
+          ['id', 'ASC']
         ]
       });
 
@@ -82,9 +85,10 @@ class AlbumController {
           },
           {
             model: Faixa,
-            attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra']
-          }
-        ]
+            attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra'],
+          },
+        ],
+        order: [[Faixa, 'numFaixa', 'ASC']]
       });
 
       res.status(200).json({

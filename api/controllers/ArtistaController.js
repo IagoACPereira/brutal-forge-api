@@ -42,7 +42,7 @@ class ArtistaController {
   static async exibirTodos(req, res) {
     try {
       const artistas = await Artista.findAndCountAll({
-        attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'descricao', 'imagem'],
+        attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem'],
         include: [
           {
             model: Genero,
@@ -52,6 +52,9 @@ class ArtistaController {
             as: 'paisArtista',
           }
         ],
+        order: [
+          ['id', 'ASC']
+        ]
       });
 
       res.status(200).json({
@@ -91,6 +94,9 @@ class ArtistaController {
             as: 'paisArtista',
           }
         ],
+        order: [
+          [Album, 'dataLancamento', 'ASC']
+        ]
       });
 
       res.status(200).json({

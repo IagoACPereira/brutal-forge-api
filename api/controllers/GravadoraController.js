@@ -72,7 +72,10 @@ class GravadoraController {
               as: 'artista',
               attributes: ['id', 'nome']
             },
-          }
+          },
+        ],
+        order: [
+          [Album, 'id', 'ASC'],
         ],
       });
       res.status(200).json({

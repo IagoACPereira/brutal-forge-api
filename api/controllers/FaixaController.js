@@ -37,7 +37,10 @@ class FaixaController {
         include: {
           model: Album,
           attributes: ['id', 'titulo']
-        }
+        },
+        order:[
+          ['id', 'ASC']
+        ]
       });
 
       res.status(200).json({
@@ -58,7 +61,7 @@ class FaixaController {
     try {
       const faixa = await Faixa.findOne({
         where: { id },
-        attributes: ['id', 'titulo', 'duracao', 'numFaixa'],
+        attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra'],
         include: {
           model: Album,
           attributes: ['id', 'titulo']
@@ -83,6 +86,7 @@ class FaixaController {
       titulo,
       duracao,
       numFaixa,
+      letra,
       albumId,
     } = req.body;
     try {
@@ -90,6 +94,7 @@ class FaixaController {
         titulo,
         duracao,
         numFaixa,
+        letra,
         albumId,
       }, {
         where: { id },

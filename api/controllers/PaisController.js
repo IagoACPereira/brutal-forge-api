@@ -22,7 +22,11 @@ class PaisController {
 
   static async exibirTodos(req, res) {
     try {
-      const paises = await Pais.findAndCountAll();
+      const paises = await Pais.findAndCountAll({
+        order: [
+          ['id', 'ASC'],
+        ],
+      });
       res.status(200).json({
         qtd: paises.count,
         dados: paises.rows,
@@ -50,7 +54,10 @@ class PaisController {
             model: Gravadora,
             as: 'paisGravadora',
             attributes: ['id', 'nome', 'imagem']
-          }
+          },
+        ],
+        order: [
+          [Artista, 'id', 'ASC'],
         ],
       });
       res.status(200).json({
