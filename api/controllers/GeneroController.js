@@ -2,6 +2,7 @@ const Album = require("../models/Album");
 const Artista = require("../models/Artista");
 const Genero = require("../models/Genero");
 const Pais = require("../models/Pais");
+const paginar = require("../modules/paginar");
 
 class GeneroController {
   static async adicionar(req, res) {
@@ -23,18 +24,18 @@ class GeneroController {
   }
 
   static async exibirTodos(req, res) {
+    const pagina = Number(req.query.pagina) || 1;
+    const limite = Number(req.query.limite) || 10;
     try {
-      const generos = await Genero.findAndCountAll({
+      const generos = await Genero.findAll({
         order: [
           ['id', 'ASC'],
         ],
       });
 
-      res.status(200).json({
-        qtd: generos.count,
-        dados: generos.rows,
-        status: 200,
-      });
+      const paginacao = paginar(generos, pagina, limite);
+
+      res.status(200).json(paginacao);
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,

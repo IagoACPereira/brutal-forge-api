@@ -3,6 +3,7 @@ const Artista = require("../models/Artista");
 const Genero = require("../models/Genero");
 const Gravadora = require("../models/Gravadora");
 const Pais = require("../models/Pais");
+const paginar = require("../modules/paginar");
 
 class ArtistaController {
   static async adicionar(req, res) {
@@ -40,8 +41,10 @@ class ArtistaController {
   }
 
   static async exibirTodos(req, res) {
+    const pagina = Number(req.query.pagina) || 1;
+    const limite = Number(req.query.limite) || 10;
     try {
-      const artistas = await Artista.findAndCountAll({
+      const artistas = await Artista.findAll({
         attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem'],
         include: [
           {
@@ -57,11 +60,9 @@ class ArtistaController {
         ]
       });
 
-      res.status(200).json({
-        qtd: artistas.count,
-        dados: artistas.rows,
-        status: 200,
-      });
+      const paginacao = paginar(artistas, pagina, limite);
+
+      res.status(200).json(paginacao);
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,
