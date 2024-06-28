@@ -7,6 +7,7 @@ const artistaRouter = require('./routes/ArtistaRoutes');
 const albumRouter = require('./routes/AlbumRoutes');
 const faixaRouter = require('./routes/FaixaRoutes');
 const Album = require('./models/Album');
+const usuarioRouter = require('./routes/UsuarioRoutes');
 
 const app = express();
 
@@ -41,6 +42,7 @@ app
     artistaRouter,
     albumRouter,
     faixaRouter,
+    usuarioRouter,
   );
 
 module.exports = app;
