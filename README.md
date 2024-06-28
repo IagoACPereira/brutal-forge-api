@@ -1,13 +1,183 @@
 # brutal-forge :skull_and_crossbones:
 <!-- <img width="50" src="https://cdn-icons-png.flaticon.com/512/1065/1065119.png"> -->
 
-A Pagina de metal brasileira mais pesada da internet.
+A API de metal brasileiro mais pesada da internet.
 
 Tem como objetivo fortalecer a cena Underground do metal nacional.
-# Tasks
-- [] Criar formularios em ordem de cadastro
-- [] Criar logica para gravar array de faixas atribuindo o id do album nelas. 
-# Ordem de cadastro
+
+## Endpoints
+
+### Paises
+#### Post
+
+Endpoint: ```/paises```
+
+| Dados | Tipos |
+|-|-|
+| nome | String |
+
+#### Get (Todos Registros)
+Endpoint: ```/paises```
+
+#### Get (Um Registro)
+Endpoint: ```/paises/:id```
+
+#### Put
+Endpoint: ```/paises/:id```
+
+#### Delete
+Endpoint: ```/paises/:id```
+
+---
+
+### Gêneros
+#### Post
+
+Endpoint: ```/generos```
+
+| Dados | Tipos |
+|-|-|
+| nome | String |
+
+#### Get (Todos Registros)
+
+Endpoint: ```/generos```
+
+#### Get (Um Registro)
+
+Endpoint: ```/generos/:id```
+
+#### Put
+
+Endpoint: ```/generos/:id```
+
+#### Delete
+
+Endpoint: ```/generos/:id```
+
+---
+
+### Gravadoras
+#### Post
+
+Endpoint: ```/gravadoras```
+
+| Dados | Tipos | Referêcia |
+|-|-|-|
+| nome | String |
+| imagem | String |
+| paisId | Integer (FK) | Paises |
+
+#### Get (Todos Registros)
+
+Endpoint: ```/gravadoras```
+
+#### Get (Um Registro)
+
+Endpoint: ```/gravadoras/:id```
+
+#### Put
+
+Endpoint: ```/gravadoras/:id```
+
+#### Delete
+
+Endpoint: ```/gravadoras/:id```
+
+---
+
+### Artistas
+#### Post
+
+Endpoint: ```/artisatas```
+
+| Dados | Tipos | Referêcia |
+|-|-|-|
+| nome | String |
+| dataFormacao | Date |
+| ativo | Boolean |
+| descricao | Text |
+| imagem | String |
+| generoId | Integer (FK) | Generos |
+| paisId | Integer (FK) | Paises |
+
+#### Get (Todos Registros)
+Endpoint: ```/artisatas```
+
+#### Get (Um Registro)
+Endpoint: ```/artisatas/:id```
+
+#### Put
+Endpoint: ```/artisatas/:id```
+
+#### Delete
+Endpoint: ```/artisatas/:id```
+
+---
+
+### Álbuns
+#### Post
+Endpoint: ```/albuns```
+
+| Dados | Tipos | Referêcia |
+|-|-|-|
+| titulo | String |
+| dataLancamento | Date |
+| imagem | String |
+| artistaId | Integer (FK) | Artistas |
+| gravadoraId | Integer (FK) | Gravadoras |
+
+#### Get (Todos Registros)
+
+Endpoint: ```/albuns```
+
+#### Get (Um Registro)
+
+Endpoint: ```/albuns/:id```
+
+#### Put
+
+Endpoint: ```/albuns/:id```
+
+#### Delete
+
+Endpoint: ```/albuns/:id```
+
+---
+
+
+### Faixas
+#### Post
+
+Endpoint: ```/albuns```
+
+| Dados | Tipos | Referêcia |
+|-|-|-|
+| titulo | String |
+| duracao | String |
+| numFaixa | Integer |
+| letra | Text |
+| albumId | Integer (FK) | Álbuns |
+
+#### Get (Todos Registros)
+
+Endpoint: ```/albuns```
+
+#### Get (Um Registro)
+
+Endpoint: ```/albuns/:id```
+
+#### Put
+
+Endpoint: ```/albuns/:id```
+
+#### Delete
+
+Endpoint: ```/albuns/:id```
+
+---
+
+## Ordem de cadastro
 
 |#|Model|
 |-|-|
@@ -19,7 +189,7 @@ Tem como objetivo fortalecer a cena Underground do metal nacional.
 |6|Faixas|
 
 
-# Passos a seguir
+## Passos a seguir
 - [x] **Planejamento**: Antes de começar a codificar, é importante planejar sua API. Defina claramente o propósito da API e identifique os principais recursos que ela deve ter.
 - [x] **Design da API**: Decida sobre a arquitetura da API (REST, GraphQL, etc.). Desenhe os endpoints da API e decida sobre os métodos HTTP a serem usados (GET, POST, PUT, DELETE, etc.). 
 - [x] **Desenvolvimento**: Comece a codificar a API usando a linguagem de programação e o framework de sua escolha. Certifique-se de seguir as melhores práticas de codificação.
@@ -31,16 +201,3 @@ Tem como objetivo fortalecer a cena Underground do metal nacional.
 - [ ] **Deploy**: Faça o deploy da sua API em um servidor. Você pode usar serviços de nuvem como AWS, Google Cloud, Azure, etc.
 - [ ] **Monitoramento e Manutenção**: Depois que a API estiver em produção, você precisará monitorá-la para garantir que esteja funcionando corretamente e fazer manutenção conforme necessário.
 ---
-# Bootstrap
-## Bootstrap (CSS)
-``` html
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-```
-## Bootstrap (Icons)
-``` html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-```
-## Bootstrap (JS)
-``` html
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-```
