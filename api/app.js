@@ -6,8 +6,8 @@ const gravadoraRouter = require('./routes/GravadoraRoutes');
 const artistaRouter = require('./routes/ArtistaRoutes');
 const albumRouter = require('./routes/AlbumRoutes');
 const faixaRouter = require('./routes/FaixaRoutes');
-const Album = require('./models/Album');
 const usuarioRouter = require('./routes/UsuarioRoutes');
+const authRouter = require('./routes/AuthRoutes');
 
 const app = express();
 
@@ -36,6 +36,7 @@ app
   })
   .use(
     cors(),
+    authRouter,
     paisRouter,
     generoRouter,
     gravadoraRouter,
