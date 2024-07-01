@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/conexaoDb");
+const Usuario = require("./Usuario");
 
 const Permissao = sequelize.define('permissao', {
   titulo: {
@@ -13,6 +14,13 @@ const Permissao = sequelize.define('permissao', {
 }, {
   timestamps: false,
   freezeTableName: true,
+});
+
+Permissao.hasMany(Usuario, {
+  foreignKey: 'id_permissao'
+});
+Usuario.belongsTo(Permissao, {
+  foreignKey: 'id_permissao'
 });
 
 module.exports = Permissao;

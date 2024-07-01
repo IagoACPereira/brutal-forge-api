@@ -1,6 +1,7 @@
 const Usuario = require("../models/Usuario");
 const bcrypt = require('bcryptjs');
 const paginar = require("../modules/paginar");
+const Permissao = require("../models/Permissao");
 
 class UsuarioController {
   static async adicionar(req, res) {
@@ -48,6 +49,11 @@ class UsuarioController {
         order: [
           ['id', 'ASC'],
         ],
+        include: [
+          {
+            model: Permissao,
+          },
+        ],
       });
 
       const paginacao = paginar(usuarios, pagina, limite);
@@ -68,6 +74,11 @@ class UsuarioController {
       const usuario = await Usuario.findOne({
         attributes: ['id', 'nome', 'email', 'telefone'],
         where: { id },
+        include: [
+          {
+            model: Permissao,
+          },
+        ],
       });
 
       res.status(200).json(usuario);

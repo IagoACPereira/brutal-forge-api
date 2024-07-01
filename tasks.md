@@ -1,7 +1,7 @@
 # Tasks
 
 - [x] Criar modelo de permissões;
-- [ ] Inserir informações de permissão nos controllers Get de usuários;
+- [x] Inserir informações de permissão nos controllers Get de usuários;
 - [ ] Criar middleware para validação de permissões;
 - [ ] Inserir validação de permissão nas rotas Post, Put e Delete;
 
