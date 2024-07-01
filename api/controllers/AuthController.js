@@ -1,6 +1,7 @@
 const Usuario = require("../models/Usuario");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Permissao = require("../models/Permissao");
 
 class AuthController {
   static async autenticar(req, res) {
@@ -8,6 +9,11 @@ class AuthController {
     try {
       const usuario = await Usuario.findOne({
         where: { email },
+        include: [
+          {
+            model: Permissao,
+          },
+        ],
       });
 
       if (!usuario) {
@@ -25,6 +31,7 @@ class AuthController {
         nome: usuario.nome,
         email: usuario.email,
         telefone: usuario.telefone,
+        permissao: usuario.permissao.titulo,
       };
 
       const token = jwt.sign(payload, process.env.SEGREDO, {
