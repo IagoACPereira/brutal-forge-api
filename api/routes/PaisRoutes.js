@@ -6,10 +6,20 @@ const validaPermissao = require('../middlewares/validaPermissao');
 const paisRouter = Router();
 
 paisRouter
-  .post('/paises/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.adicionar)
+  .post(
+    '/paises/',
+    validaToken,
+    validaPermissao(['manipulacao', 'admin']),
+    PaisController.adicionar,
+  )
   .get('/paises/', PaisController.exibirTodos)
   .get('/paises/:id/', PaisController.exibirUm)
-  .put('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.atualizar)
+  .put(
+    '/paises/:id/',
+    validaToken,
+    validaPermissao(['manipulacao', 'admin']),
+    PaisController.atualizar,
+  )
   .delete('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.deletar);
 
 module.exports = paisRouter;

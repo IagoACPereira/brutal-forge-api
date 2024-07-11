@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const Artista = require('../models/Artista');
 const Genero = require('../models/Genero');
 const Pais = require('../models/Pais');
@@ -6,7 +7,11 @@ const paginar = require('../modules/paginar');
 class GeneroController {
   static async adicionar(req, res) {
     const { nome } = req.body;
+    const validaDados = validationResult(req);
     try {
+      if (!validaDados.isEmpty()) {
+        throw new Error('Erro validação dos dados');
+      }
       const genero = await Genero.create({ nome });
 
       res.status(201).json({
@@ -15,11 +20,18 @@ class GeneroController {
         status: 201,
       });
     } catch (error) {
+      if (error.message === 'Erro validação dos dados') {
+        return res.status(400).json({
+          mensagem: validaDados.array()[0].msg,
+          status: 400,
+        });
+      }
       res.status(400).json({
         mensagem: error.message,
         status: 400,
       });
     }
+    return 0;
   }
 
   static async exibirTodos(req, res) {
@@ -83,7 +95,11 @@ class GeneroController {
   static async atualizar(req, res) {
     const { id } = req.params;
     const { nome } = req.body;
+    const validaDados = validationResult(req);
     try {
+      if (!validaDados.isEmpty()) {
+        throw new Error('Erro validação dos dados');
+      }
       await Genero.update({ nome }, {
         where: { id },
       });
@@ -93,11 +109,18 @@ class GeneroController {
         status: 200,
       });
     } catch (error) {
+      if (error.message === 'Erro validação dos dados') {
+        return res.status(400).json({
+          mensagem: validaDados.array()[0].msg,
+          status: 400,
+        });
+      }
       res.status(400).json({
         mensagem: error.message,
         status: 400,
       });
     }
+    return 0;
   }
 
   static async deletar(req, res) {

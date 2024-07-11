@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const Usuario = require('../models/Usuario');
 const paginar = require('../modules/paginar');
@@ -6,9 +7,17 @@ const Permissao = require('../models/Permissao');
 class UsuarioController {
   static async adicionar(req, res) {
     const {
-      nome, email, telefone, senha, confirmacaoSenha,
+      nome,
+      email,
+      telefone,
+      senha,
+      confirmacaoSenha,
     } = req.body;
+    const validaDados = validationResult(req);
     try {
+      if (!validaDados.isEmpty()) {
+        throw new Error('Erro validação dos dados');
+      }
       const usuario = await Usuario.findOne({
         where: { email },
       });
@@ -34,11 +43,18 @@ class UsuarioController {
         status: 200,
       });
     } catch (error) {
+      if (error.message === 'Erro validação dos dados') {
+        return res.status(400).json({
+          mensagem: validaDados.array()[0].msg,
+          status: 400,
+        });
+      }
       res.status(400).json({
         mensagem: error.message,
         status: 400,
       });
     }
+    return 0;
   }
 
   static async exibirTodos(req, res) {
@@ -92,8 +108,16 @@ class UsuarioController {
 
   static async atualizar(req, res) {
     const { id } = req.params;
-    const { nome, email, telefone } = req.body;
+    const {
+      nome,
+      email,
+      telefone,
+    } = req.body;
+    const validaDados = validationResult(req);
     try {
+      if (!validaDados.isEmpty()) {
+        throw new Error('Erro validação dos dados');
+      }
       await Usuario.update({
         nome,
         email,
@@ -107,11 +131,18 @@ class UsuarioController {
         status: 200,
       });
     } catch (error) {
+      if (error.message === 'Erro validação dos dados') {
+        return res.status(400).json({
+          mensagem: validaDados.array()[0].msg,
+          status: 400,
+        });
+      }
       res.status(400).json({
         mensagem: error.message,
         status: 400,
       });
     }
+    return 0;
   }
 
   static async deletar(req, res) {
