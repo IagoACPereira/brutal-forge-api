@@ -1,6 +1,6 @@
-const Album = require("../models/Album");
-const Faixa = require("../models/Faixa");
-const paginar = require("../modules/paginar");
+const Album = require('../models/Album');
+const Faixa = require('../models/Faixa');
+const paginar = require('../modules/paginar');
 
 class FaixaController {
   static async adicionar(req, res) {
@@ -39,11 +39,11 @@ class FaixaController {
         attributes: ['id', 'titulo', 'duracao', 'numFaixa'],
         include: {
           model: Album,
-          attributes: ['id', 'titulo']
+          attributes: ['id', 'titulo'],
         },
-        order:[
-          ['id', 'ASC']
-        ]
+        order: [
+          ['id', 'ASC'],
+        ],
       });
 
       const paginacao = paginar(faixas, pagina, limite);
@@ -65,8 +65,8 @@ class FaixaController {
         attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra'],
         include: {
           model: Album,
-          attributes: ['id', 'titulo']
-        }
+          attributes: ['id', 'titulo'],
+        },
       });
 
       res.status(200).json({

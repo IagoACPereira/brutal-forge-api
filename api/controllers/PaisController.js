@@ -1,13 +1,13 @@
-const Artista = require("../models/Artista");
-const Gravadora = require("../models/Gravadora");
-const Pais = require("../models/Pais");
-const paginar = require("../modules/paginar");
+const Artista = require('../models/Artista');
+const Gravadora = require('../models/Gravadora');
+const Pais = require('../models/Pais');
+const paginar = require('../modules/paginar');
 
 class PaisController {
   static async adicionar(req, res) {
     const { nome } = req.body;
     try {
-      const pais = await Pais.create({ nome })
+      const pais = await Pais.create({ nome });
       res.status(201).json({
         mensagem: 'Pais adicionado com sucesso!',
         dados: pais,
@@ -46,7 +46,7 @@ class PaisController {
     const { id } = req.params;
     try {
       const pais = await Pais.findOne({
-      where: { id },
+        where: { id },
         include: [
           {
             model: Artista,
@@ -55,7 +55,7 @@ class PaisController {
           {
             model: Gravadora,
             as: 'paisGravadora',
-            attributes: ['id', 'nome', 'imagem']
+            attributes: ['id', 'nome', 'imagem'],
           },
         ],
         order: [

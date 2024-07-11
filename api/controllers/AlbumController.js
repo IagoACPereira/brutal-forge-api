@@ -1,8 +1,8 @@
-const Album = require("../models/Album");
-const Artista = require("../models/Artista");
-const Faixa = require("../models/Faixa");
-const Gravadora = require("../models/Gravadora");
-const paginar = require("../modules/paginar");
+const Album = require('../models/Album');
+const Artista = require('../models/Artista');
+const Faixa = require('../models/Faixa');
+const Gravadora = require('../models/Gravadora');
+const paginar = require('../modules/paginar');
 
 class AlbumController {
   static async adicionar(req, res) {
@@ -45,16 +45,16 @@ class AlbumController {
           {
             model: Artista,
             as: 'artista',
-            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem']
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem'],
           },
           {
             model: Gravadora,
-            attributes: ['id', 'nome', 'imagem']
+            attributes: ['id', 'nome', 'imagem'],
           },
         ],
         order: [
-          ['id', 'ASC']
-        ]
+          ['id', 'ASC'],
+        ],
       });
 
       const paginacao = paginar(albuns, pagina, limite);
@@ -78,18 +78,20 @@ class AlbumController {
           {
             model: Artista,
             as: 'artista',
-            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem']
+            attributes: ['id', 'nome', 'dataFormacao', 'ativo', 'imagem'],
           },
           {
             model: Gravadora,
-            attributes: ['id', 'nome', 'imagem']
+            attributes: ['id', 'nome', 'imagem'],
           },
           {
             model: Faixa,
             attributes: ['id', 'titulo', 'duracao', 'numFaixa', 'letra'],
           },
         ],
-        order: [[Faixa, 'numFaixa', 'ASC']]
+        order: [
+          [Faixa, 'numFaixa', 'ASC'],
+        ],
       });
 
       res.status(200).json({
@@ -171,7 +173,7 @@ class AlbumController {
       res.status(200).json({
         mensagem: `Você gostou do album ${album.titulo}`,
         status: 200,
-      })
+      });
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,
@@ -196,7 +198,7 @@ class AlbumController {
       res.status(200).json({
         mensagem: `Você não gostou do album ${album.titulo}`,
         status: 200,
-      })
+      });
     } catch (error) {
       res.status(400).json({
         mensagem: error.message,

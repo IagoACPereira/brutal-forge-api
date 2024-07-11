@@ -25,7 +25,7 @@ const Album = sequelize.define('album', {
     type: DataTypes.INTEGER,
     allowNull: true,
     defaultValue: 0,
-  }
+  },
 }, {
   timestamps: false,
   freezeTableName: true,
@@ -40,10 +40,10 @@ Album.belongsTo(Artista, {
   as: 'artista',
 });
 Gravadora.hasMany(Album, {
-  foreignKey: 'gravadoraId'
+  foreignKey: 'gravadoraId',
 });
 Album.belongsTo(Gravadora, {
-  foreignKey: 'gravadoraId'
+  foreignKey: 'gravadoraId',
 });
 
 // Album.sync({ force: true });

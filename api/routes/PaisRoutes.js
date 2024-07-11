@@ -11,5 +11,5 @@ paisRouter
   .get('/paises/:id/', PaisController.exibirUm)
   .put('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.atualizar)
   .delete('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.deletar);
-  
+
 module.exports = paisRouter;

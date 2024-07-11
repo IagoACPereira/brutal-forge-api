@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 async function validaToken(req, res, next) {
   const token = req.headers.authorization;
   try {
-    await jwt.verify(token, process.env.SEGREDO)
+    jwt.verify(token, process.env.SEGREDO);
 
-    next();  
+    next();
   } catch (error) {
     res.status(401).json({
       mensagem: error.message,

@@ -1,22 +1,24 @@
-const Usuario = require("../models/Usuario");
 const bcrypt = require('bcryptjs');
-const paginar = require("../modules/paginar");
-const Permissao = require("../models/Permissao");
+const Usuario = require('../models/Usuario');
+const paginar = require('../modules/paginar');
+const Permissao = require('../models/Permissao');
 
 class UsuarioController {
   static async adicionar(req, res) {
-    const { nome, email, telefone, senha, confirmacaoSenha } = req.body;
+    const {
+      nome, email, telefone, senha, confirmacaoSenha,
+    } = req.body;
     try {
       const usuario = await Usuario.findOne({
         where: { email },
       });
 
       if (usuario) {
-        throw new Error('Usuário já está cadastrado')
+        throw new Error('Usuário já está cadastrado');
       }
 
       if (senha !== confirmacaoSenha) {
-        throw new Error('"Senha" e "Confirmação de Senha" não conferem')
+        throw new Error('"Senha" e "Confirmação de Senha" não conferem');
       }
 
       const novoUsuario = await Usuario.create({
@@ -24,7 +26,7 @@ class UsuarioController {
         email,
         telefone,
         senha: await bcrypt.hash(senha, 10),
-      })
+      });
 
       res.status(200).json({
         mensagem: 'Usuário cadastrado com sucesso',
@@ -37,7 +39,6 @@ class UsuarioController {
         status: 400,
       });
     }
-
   }
 
   static async exibirTodos(req, res) {
@@ -65,7 +66,6 @@ class UsuarioController {
         status: 400,
       });
     }
-    
   }
 
   static async exibirUm(req, res) {
@@ -88,7 +88,6 @@ class UsuarioController {
         status: 400,
       });
     }
-    
   }
 
   static async atualizar(req, res) {
@@ -113,7 +112,6 @@ class UsuarioController {
         status: 400,
       });
     }
-    
   }
 
   static async deletar(req, res) {
@@ -133,7 +131,6 @@ class UsuarioController {
         status: 400,
       });
     }
-    
   }
 }
 

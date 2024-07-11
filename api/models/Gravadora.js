@@ -19,12 +19,10 @@ const Gravadora = sequelize.define('gravadora', {
 Pais.hasMany(Gravadora, {
   foreignKey: 'paisId',
   as: 'paisGravadora',
-})
+});
 Gravadora.belongsTo(Pais, {
   foreignKey: 'paisId',
   as: 'paisGravadora',
-})
-
-// Gravadora.sync({ force: true });
+});
 
 module.exports = Gravadora;

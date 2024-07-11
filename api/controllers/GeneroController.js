@@ -1,8 +1,7 @@
-const Album = require("../models/Album");
-const Artista = require("../models/Artista");
-const Genero = require("../models/Genero");
-const Pais = require("../models/Pais");
-const paginar = require("../modules/paginar");
+const Artista = require('../models/Artista');
+const Genero = require('../models/Genero');
+const Pais = require('../models/Pais');
+const paginar = require('../modules/paginar');
 
 class GeneroController {
   static async adicionar(req, res) {
@@ -59,8 +58,8 @@ class GeneroController {
               },
               {
                 model: Pais,
-                as: 'paisArtista'
-              }
+                as: 'paisArtista',
+              },
             ],
           },
         ],

@@ -1,9 +1,9 @@
-const Album = require("../models/Album");
-const Artista = require("../models/Artista");
-const Genero = require("../models/Genero");
-const Gravadora = require("../models/Gravadora");
-const Pais = require("../models/Pais");
-const paginar = require("../modules/paginar");
+const Album = require('../models/Album');
+const Artista = require('../models/Artista');
+const Genero = require('../models/Genero');
+const Gravadora = require('../models/Gravadora');
+const Pais = require('../models/Pais');
+const paginar = require('../modules/paginar');
 
 class ArtistaController {
   static async adicionar(req, res) {
@@ -53,11 +53,11 @@ class ArtistaController {
           {
             model: Pais,
             as: 'paisArtista',
-          }
+          },
         ],
         order: [
-          ['id', 'ASC']
-        ]
+          ['id', 'ASC'],
+        ],
       });
 
       const paginacao = paginar(artistas, pagina, limite);
@@ -84,8 +84,8 @@ class ArtistaController {
             as: 'albuns',
             include: {
               model: Gravadora,
-              attributes: ['id', 'nome', 'imagem']
-            }, 
+              attributes: ['id', 'nome', 'imagem'],
+            },
           },
           {
             model: Genero,
@@ -93,11 +93,11 @@ class ArtistaController {
           {
             model: Pais,
             as: 'paisArtista',
-          }
+          },
         ],
         order: [
-          [Album, 'dataLancamento', 'ASC']
-        ]
+          [Album, 'dataLancamento', 'ASC'],
+        ],
       });
 
       res.status(200).json({

@@ -11,6 +11,4 @@ const Genero = sequelize.define('genero', {
   freezeTableName: true,
 });
 
-// Genero.sync({ force: true });
-
 module.exports = Genero;

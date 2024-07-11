@@ -1,8 +1,8 @@
-const Album = require("../models/Album");
-const Artista = require("../models/Artista");
-const Gravadora = require("../models/Gravadora");
-const Pais = require("../models/Pais");
-const paginar = require("../modules/paginar");
+const Album = require('../models/Album');
+const Artista = require('../models/Artista');
+const Gravadora = require('../models/Gravadora');
+const Pais = require('../models/Pais');
+const paginar = require('../modules/paginar');
 
 class GravadoraController {
   static async adicionar(req, res) {
@@ -71,7 +71,7 @@ class GravadoraController {
             include: {
               model: Artista,
               as: 'artista',
-              attributes: ['id', 'nome']
+              attributes: ['id', 'nome'],
             },
           },
         ],
@@ -125,7 +125,7 @@ class GravadoraController {
       await Gravadora.destroy({
         where: { id },
       });
-      
+
       res.status(200).json({
         mensagem: 'Gravadora deletada com sucesso',
         status: 200,

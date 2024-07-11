@@ -18,7 +18,7 @@ const Faixa = sequelize.define('faixa', {
   letra: {
     type: DataTypes.TEXT,
     allowNull: true,
-  }
+  },
 }, {
   timestamps: false,
   freezeTableName: true,

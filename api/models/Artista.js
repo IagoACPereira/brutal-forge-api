@@ -30,19 +30,19 @@ const Artista = sequelize.define('artista', {
 });
 
 Genero.hasMany(Artista, {
-  foreignKey: 'generoId'
+  foreignKey: 'generoId',
 });
 Artista.belongsTo(Genero, {
-  foreignKey: 'generoId'
+  foreignKey: 'generoId',
 });
 Pais.hasMany(Artista, {
   foreignKey: 'paisId',
 });
 Artista.belongsTo(Pais, {
   foreignKey: 'paisId',
-  as: 'paisArtista'
+  as: 'paisArtista',
 });
 
 // Artista.sync({ force: true });
 
-module.exports =  Artista;
+module.exports = Artista;

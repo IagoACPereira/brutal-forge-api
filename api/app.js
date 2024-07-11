@@ -26,7 +26,7 @@ app
       res.status(200).json({
         mensagem: 'Brutal Forge API',
         status: 200,
-      })
+      });
     } catch (error) {
       res.status(400).json({
         mensagem: error.messege,
