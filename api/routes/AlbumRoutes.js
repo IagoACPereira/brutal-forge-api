@@ -12,6 +12,6 @@ albumRouter
   .get('/albuns/:id/', AlbumController.exibirUm)
   .get('/albuns/', AlbumController.exibirTodos)
   .put('/albuns/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), AlbumController.atualizar)
-  .delete('/albuns/:id/', validaToken, validaPermissao(['manipulacao', 'admin'])AlbumController.deletar);
+  .delete('/albuns/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), AlbumController.deletar);
 
 module.exports = albumRouter;

@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const GeneroController = require('../controllers/GeneroController');
 const validaToken = require('../middlewares/validaToken');
+const validaPermissao = require('../middlewares/validaPermissao');
 
 const generoRouter = Router();
 

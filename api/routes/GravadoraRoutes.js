@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const GravadoraController = require('../controllers/GravadoraController');
 const validaToken = require('../middlewares/validaToken');
+const validaPermissao = require('../middlewares/validaPermissao');
 
 const gravadoraRouter = Router();
 

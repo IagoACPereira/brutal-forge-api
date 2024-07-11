@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const PaisController = require('../controllers/PaisController');
 const validaToken = require('../middlewares/validaToken');
+const validaPermissao = require('../middlewares/validaPermissao');
 
 const paisRouter = Router();
 
