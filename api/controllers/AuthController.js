@@ -44,9 +44,9 @@ class AuthController {
         status: 200,
       });
     } catch (error) {
-      res.status(400).json({
+      res.status(401).json({
         mensagem: error.message,
-        status: 400,
+        status: 401,
       });
     }
   }

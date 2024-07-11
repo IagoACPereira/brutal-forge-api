@@ -7,9 +7,9 @@ async function validaToken(req, res, next) {
 
     next();  
   } catch (error) {
-    res.status(400).json({
+    res.status(401).json({
       mensagem: error.message,
-      status: 400,
+      status: 401,
     });
   }
 }
