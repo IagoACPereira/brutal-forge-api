@@ -5,10 +5,10 @@ const validaToken = require('../middlewares/validaToken');
 const paisRouter = Router();
 
 paisRouter
-  .post('/paises/', validaToken, PaisController.adicionar)
+  .post('/paises/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.adicionar)
   .get('/paises/', PaisController.exibirTodos)
   .get('/paises/:id/', PaisController.exibirUm)
-  .put('/paises/:id/', validaToken, PaisController.atualizar)
-  .delete('/paises/:id/', validaToken, PaisController.deletar);
+  .put('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.atualizar)
+  .delete('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.deletar);
   
 module.exports = paisRouter;
