@@ -1,3 +1,4 @@
+const { body } = require('express-validator');
 const { Router } = require('express');
 const PaisController = require('../controllers/PaisController');
 const validaToken = require('../middlewares/validaToken');
@@ -10,6 +11,9 @@ paisRouter
     '/paises/',
     validaToken,
     validaPermissao(['manipulacao', 'admin']),
+    [
+      body('nome').notEmpty().withMessage('Campo "Nome" não pode ser vazio'),
+    ],
     PaisController.adicionar,
   )
   .get('/paises/', PaisController.exibirTodos)
@@ -18,6 +22,9 @@ paisRouter
     '/paises/:id/',
     validaToken,
     validaPermissao(['manipulacao', 'admin']),
+    [
+      body('nome').notEmpty().withMessage('Campo "Nome" não pode ser vazio'),
+    ],
     PaisController.atualizar,
   )
   .delete('/paises/:id/', validaToken, validaPermissao(['manipulacao', 'admin']), PaisController.deletar);
