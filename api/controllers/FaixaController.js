@@ -9,6 +9,7 @@ class FaixaController {
       titulo,
       duracao,
       numFaixa,
+      letra,
       albumId,
     } = req.body;
     const validaDados = validationResult(req);
@@ -20,6 +21,7 @@ class FaixaController {
         titulo,
         duracao,
         numFaixa,
+        letra,
         albumId,
       });
 
