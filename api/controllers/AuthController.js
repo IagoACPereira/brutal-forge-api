@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Usuario = require('../models/Usuario');
@@ -6,7 +7,11 @@ const Permissao = require('../models/Permissao');
 class AuthController {
   static async autenticar(req, res) {
     const { email, senha } = req.body;
+    const validaDados = validationResult(req);
     try {
+      if (!validaDados.isEmpty()) {
+        throw new Error('Erro validação dos dados');
+      }
       const usuario = await Usuario.findOne({
         where: { email },
         include: [
@@ -44,11 +49,18 @@ class AuthController {
         status: 200,
       });
     } catch (error) {
+      if (error.message === 'Erro validação dos dados') {
+        return res.status(400).json({
+          mensagem: validaDados.array()[0].msg,
+          status: 400,
+        });
+      }
       res.status(401).json({
         mensagem: error.message,
         status: 401,
       });
     }
+    return 0;
   }
 }
 
