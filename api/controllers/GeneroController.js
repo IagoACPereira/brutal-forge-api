@@ -89,6 +89,10 @@ class GeneroController {
         ],
       });
 
+      if (!genero) {
+        throw new Error(`Não existe gênero cadastrado com o id ${id}`);
+      }
+
       res.status(200).json({
         dados: genero,
         status: 200,

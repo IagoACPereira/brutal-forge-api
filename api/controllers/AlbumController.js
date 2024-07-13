@@ -118,6 +118,10 @@ class AlbumController {
         ],
       });
 
+      if (!album) {
+        throw new Error(`Não existe álbum cadastrado com o id ${id}`);
+      }
+
       res.status(200).json({
         dados: album,
         status: 200,

@@ -121,10 +121,14 @@ class ArtistaController {
             as: 'paisArtista',
           },
         ],
-        order: [
-          [Album, 'dataLancamento', 'ASC'],
-        ],
+        // order: [
+        //   [Album, 'dataLancamento', 'ASC'],
+        // ],
       });
+
+      if (!artista) {
+        throw new Error(`Não existe artista cadastrado com o id ${id}`);
+      }
 
       res.status(200).json({
         dados: artista,

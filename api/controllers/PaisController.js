@@ -81,6 +81,11 @@ class PaisController {
           [Artista, 'id', 'ASC'],
         ],
       });
+
+      if (!pais) {
+        throw new Error(`Não existe pais cadastrado com o id ${id}`);
+      }
+
       res.status(200).json({
         dados: pais,
         status: 200,

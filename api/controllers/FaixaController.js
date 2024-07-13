@@ -97,6 +97,10 @@ class FaixaController {
         },
       });
 
+      if (!faixa) {
+        throw new Error(`Não existe faixa cadastrada com o id ${id}`);
+      }
+
       res.status(200).json({
         dados: faixa,
         status: 200,

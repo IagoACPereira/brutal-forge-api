@@ -103,6 +103,11 @@ class GravadoraController {
           [Album, 'id', 'ASC'],
         ],
       });
+
+      if (!gravadora) {
+        throw new Error(`Não existe gravadora cadastrada com o id ${id}`);
+      }
+
       res.status(200).json({
         dados: gravadora,
         status: 200,

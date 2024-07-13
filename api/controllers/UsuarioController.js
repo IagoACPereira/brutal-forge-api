@@ -97,6 +97,10 @@ class UsuarioController {
         ],
       });
 
+      if (!usuario) {
+        throw new Error(`Não existe usuário cadastrado com o id ${id}`);
+      }
+
       res.status(200).json(usuario);
     } catch (error) {
       res.status(400).json({
