@@ -12,11 +12,20 @@ class GeneroController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const genero = await Genero.create({ nome });
+
+      const generoExiste = await Genero.findOne({
+        where: { nome },
+      });
+
+      if (generoExiste) {
+        throw new Error('Este gênero já está cadastrado');
+      }
+
+      const novoGenero = await Genero.create({ nome });
 
       res.status(201).json({
         mensagem: 'Genero adicionado com sucesso',
-        dados: genero,
+        dados: novoGenero,
         status: 201,
       });
     } catch (error) {

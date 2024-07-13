@@ -22,7 +22,21 @@ class ArtistaController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const artista = await Artista.create({
+
+      const artistaExiste = await Artista.findOne({
+        where: {
+          nome,
+          dataFormacao,
+          generoId,
+          paisId,
+        },
+      });
+
+      if (artistaExiste) {
+        throw new Error('Este artista já está cadastrado');
+      }
+
+      const novoArtista = await Artista.create({
         nome,
         dataFormacao,
         ativo,
@@ -34,7 +48,7 @@ class ArtistaController {
 
       res.status(201).json({
         mensagem: 'Artista adicionado com sucesso',
-        dados: artista,
+        dados: novoArtista,
         status: 201,
       });
     } catch (error) {

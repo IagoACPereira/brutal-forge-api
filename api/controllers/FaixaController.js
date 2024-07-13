@@ -17,7 +17,21 @@ class FaixaController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const faixa = await Faixa.create({
+
+      const faixaExiste = await Faixa.findOne({
+        where: {
+          titulo,
+          duracao,
+          numFaixa,
+          albumId,
+        },
+      });
+
+      if (faixaExiste) {
+        throw new Error('Esta faixa já está cadastrada');
+      }
+
+      const novaFaixa = await Faixa.create({
         titulo,
         duracao,
         numFaixa,
@@ -27,7 +41,7 @@ class FaixaController {
 
       res.status(201).json({
         mensagem: 'Faixa adicionada com sucesso',
-        dados: faixa,
+        dados: novaFaixa,
         status: 201,
       });
     } catch (error) {

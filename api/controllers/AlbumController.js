@@ -19,7 +19,19 @@ class AlbumController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const album = await Album.create({
+
+      const albumExiste = await Album.findOne({
+        where: {
+          titulo,
+          artistaId,
+        },
+      });
+
+      if (albumExiste) {
+        throw new Error('Este álbum já está cadastrado');
+      }
+
+      const novoAlbum = await Album.create({
         titulo,
         dataLancamento,
         imagem,
@@ -29,7 +41,7 @@ class AlbumController {
 
       res.status(201).json({
         mensagem: 'Album adicionado com sucesso',
-        dados: album,
+        dados: novoAlbum,
         status: 201,
       });
     } catch (error) {

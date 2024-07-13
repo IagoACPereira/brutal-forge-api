@@ -17,7 +17,19 @@ class GravadoraController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const gravadora = await Gravadora.create({
+
+      const gravadora = await Gravadora.findOne({
+        where: {
+          nome,
+          paisId,
+        },
+      });
+
+      if (gravadora) {
+        throw new Error('Esta gravadora já está cadastrada');
+      }
+
+      const novaGravadora = await Gravadora.create({
         nome,
         imagem,
         paisId,
@@ -25,7 +37,7 @@ class GravadoraController {
 
       res.status(201).json({
         mensagem: 'Gravadora adicionada com sucesso',
-        dados: gravadora,
+        dados: novaGravadora,
         status: 201,
       });
     } catch (error) {

@@ -12,10 +12,17 @@ class PaisController {
       if (!validaDados.isEmpty()) {
         throw new Error('Erro validação dos dados');
       }
-      const pais = await Pais.create({ nome });
+
+      const pais = await Pais.findOne();
+
+      if (pais) {
+        throw new Error('Este pais já esta cadastrada');
+      }
+
+      const novoPais = await Pais.create({ nome });
       res.status(201).json({
         mensagem: 'Pais adicionado com sucesso!',
-        dados: pais,
+        dados: novoPais,
         status: 201,
       });
     } catch (error) {
