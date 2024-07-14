@@ -21,7 +21,7 @@ app
   .use('/public', express.static(`${__dirname}/public`))
   .set('view engine', 'ejs')
   .set('views', `${__dirname}/views`)
-  .get('/', cors(), async (req, res) => {
+  .get('/api/', cors(), async (req, res) => {
     try {
       res.status(200).json({
         mensagem: 'Brutal Forge API',
@@ -35,6 +35,7 @@ app
     }
   })
   .use(
+    '/api/',
     cors(),
     authRouter,
     paisRouter,
