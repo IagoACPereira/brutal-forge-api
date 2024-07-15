@@ -13,7 +13,9 @@ class PaisController {
         throw new Error('Erro validação dos dados');
       }
 
-      const pais = await Pais.findOne();
+      const pais = await Pais.findOne({
+        where: { nome },
+      });
 
       if (pais) {
         throw new Error('Este pais já esta cadastrada');
