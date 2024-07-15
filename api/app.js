@@ -8,6 +8,7 @@ const albumRouter = require('./routes/AlbumRoutes');
 const faixaRouter = require('./routes/FaixaRoutes');
 const usuarioRouter = require('./routes/UsuarioRoutes');
 const authRouter = require('./routes/AuthRoutes');
+const erro404 = require('./middlewares/erro404');
 
 const app = express();
 
@@ -45,6 +46,7 @@ app
     albumRouter,
     faixaRouter,
     usuarioRouter,
-  );
+  )
+  .use(erro404);
 
 module.exports = app;
